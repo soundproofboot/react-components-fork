@@ -21,6 +21,15 @@ export const PizzaToppings = () => {
     //
     // Calculated/derived state and other code...
     //
+    const total = availablePizzaToppings
+        .filter(
+            x => x.checked
+        )
+        .reduce(
+            (acc, x) => acc + x.price,
+            0,
+        )
+    ;
 
     //
     // Return JSX...
@@ -55,6 +64,19 @@ export const PizzaToppings = () => {
                                     id={x.name}
                                     type="checkbox"
                                     label={`${x.name} ($${x.price.toFixed(2)})`}
+                                    checked={x.checked}
+                                    onChange={
+                                        () => setAvailablePizzaToppings(
+                                            availablePizzaToppings.map(
+                                                y => ({
+                                                    ...y,
+                                                    checked: y === x
+                                                        ? !y.checked
+                                                        : y.checked
+                                                })
+                                            )
+                                        )
+                                    }
                                 />
                             )
                         )
@@ -63,7 +85,7 @@ export const PizzaToppings = () => {
                 <h4
                     className="mt-3"
                 >
-                    Total: $0.00
+                    Total: ${total.toFixed(2)}
                 </h4>
             </Card.Body>
         </Card>
