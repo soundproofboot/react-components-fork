@@ -1,5 +1,6 @@
 import './App.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
+import reactLogo from './assets/react.svg';
 import PizzaToppings from './PizzaToppings';
 
 const App = () => {
@@ -9,7 +10,7 @@ const App = () => {
       className='m-3'
     >
       <h1>
-        React Components
+        <img src={reactLogo} alt="React Logo" />React Components
       </h1>
       <PizzaToppings />
     </div>
